@@ -86,7 +86,7 @@
         message
       ].filter(function (line) { return line !== null; }).join("\n");
 
-      window.location.href = "mailto:contact@marexsoft.ci"
+      window.location.href = "mailto:contact@neva-ci.pro"
         + "?subject=" + encodeURIComponent(subject)
         + "&body=" + encodeURIComponent(body);
 
@@ -96,6 +96,22 @@
       }
     });
   }
+
+
+  var testButtons = document.querySelectorAll(".app-test");
+  testButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      var app = button.getAttribute("data-app") || "";
+      var messageField = document.getElementById("message");
+      var contactSection = document.getElementById("contact");
+      if (messageField) {
+        messageField.value = "Demande de test — " + app + "\n\nEntreprise : \nUsage prévu : \n";
+      }
+      if (contactSection) contactSection.scrollIntoView({ behavior: "smooth" });
+      var nameField = document.getElementById("name");
+      if (nameField) nameField.focus({ preventScroll: true });
+    });
+  });
 
   var year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
